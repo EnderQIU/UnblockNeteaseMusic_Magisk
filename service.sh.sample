@@ -1,6 +1,4 @@
 re=$(grep -m1 -i "com.netease.cloudmusic" /data/system/packages.list | cut -d' ' -f2)
 
-service_on() {
-  iptables -t nat -A OUTPUT -p tcp -m owner --uid-owner $re -m tcp --dport 80 -j DNAT --to <ip>:<http_port>
-  iptables -t nat -A OUTPUT -p tcp -m owner --uid-owner $re -m tcp --dport 443 -j DNAT --to <ip>:<https_port>
-}
+iptables -i wlan0 -t nat -A OUTPUT -p tcp -m owner --uid-owner $re -m tcp --dport 80 -j DNAT --to <ip>:<http_port>
+iptables -i wlan0 -t nat -A OUTPUT -p tcp -m owner --uid-owner $re -m tcp --dport 443 -j DNAT --to <ip>:<https_port>
