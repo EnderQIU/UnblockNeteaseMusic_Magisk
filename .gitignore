@@ -1,3 +1,3 @@
 service.sh
 out/*.zip
-
+.DS_Store
